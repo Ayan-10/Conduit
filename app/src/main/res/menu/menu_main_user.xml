@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_feed"
+            android:icon="@drawable/ic_menu_feed_24dp"
+            android:title="@string/menu_feed" />
+        <item
+            android:id="@+id/nav_myfeed"
+            android:icon="@drawable/baseline_library_add_check_black_24dp"
+            android:title="@string/menu_myfeed" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings_24dp"
+            android:title="@string/menu_settings" />
+    </group>
+</menu>
