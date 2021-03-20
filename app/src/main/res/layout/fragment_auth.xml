@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--    <fragment-->
-    <!--        android:id="@+id/authFragmentNavHost"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        app:navGraph="@navigation/navigation_auth"-->
-    <!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
-    <!--        />-->
+        <fragment
+            android:id="@+id/authFragmentNavHost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:navGraph="@navigation/navigation_auth"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            />
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/authTabLayout"
         android:layout_width="match_parent"
@@ -36,14 +36,5 @@
             android:text="Sign up" />
 
     </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:id="@+id/viewPager"
-        app:layout_constraintBottom_toTopOf="@+id/authTabLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

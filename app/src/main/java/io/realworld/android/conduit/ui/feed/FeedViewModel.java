@@ -2,6 +2,7 @@ package io.realworld.android.conduit.ui.feed;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -22,7 +23,7 @@ public class FeedViewModel extends ViewModel {
 
     private final MutableLiveData<List<Article>> _feed = new MutableLiveData<>();
 
-    MutableLiveData<List<Article>> feed = _feed;
+    LiveData<List<Article>> feed = _feed;
 
     void fetchGlobalFeed(){
         ArticlesRepo articlesRepo = new ArticlesRepo();

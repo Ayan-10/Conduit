@@ -21,21 +21,15 @@ import io.realworld.android.api.models.entities.User;
 import io.realworld.android.conduit.MainActivity;
 import io.realworld.android.conduit.R;
 
-///**
-// * A simple {@link Fragment} subclass.
-// * Use the {@link SignupFragment#newInstance} factory method to
-// * create an instance of this fragment.
-// */
 public class SignupFragment extends Fragment {
     private AuthViewModel authViewModel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         authViewModel =
-                new ViewModelProvider(this).get(AuthViewModel.class);
+                new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_login_signup, container, false);
-
 
         // Inflate the layout for this fragment
         return root;
@@ -56,17 +50,6 @@ public class SignupFragment extends Fragment {
                 String emailEditText = eEditText.getText().toString();
                 String passwordEditText = pEditText.getText().toString();
                 authViewModel.signup(usernameEditText,emailEditText,passwordEditText);
-            }
-        });
-        authViewModel.user.observe(getViewLifecycleOwner(), new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                String s = user.getUsername();
-                Toast.makeText(requireContext(),"User logged "+s,Toast.LENGTH_LONG).show();
-                intent.putExtra("key",s);
-                startActivity(intent);
-
             }
         });
     }

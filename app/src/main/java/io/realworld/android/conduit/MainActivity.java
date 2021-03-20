@@ -1,11 +1,13 @@
 package io.realworld.android.conduit;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -14,15 +16,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import io.realworld.android.conduit.ui.auth.SettingsFragment;
+import io.realworld.android.api.models.entities.User;
+import io.realworld.android.conduit.ui.auth.AuthViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-
+    private AuthViewModel authViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -39,14 +43,19 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        Intent intent = getIntent();
-        String s = intent.getStringExtra("username");
+        authViewModel.user.observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                String username = user.getUsername();
+                Toast.makeText(MainActivity.this,"User logged "+username,Toast.LENGTH_LONG).show();
 
-        updateMenu(s,navigationView);
-
-
+                updateMenu(username,navigationView);
+                navController.navigateUp();
+            }
+        });
 
     }
+
     private void updateMenu(String s, NavigationView navigationView){
         if(s!=null){
             navigationView.getMenu().clear();

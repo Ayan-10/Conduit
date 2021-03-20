@@ -1,4 +1,4 @@
-package io.realworld.android.conduit.ui.auth;
+package io.realworld.android.conduit.ui.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +30,7 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         authViewModel =
-                new ViewModelProvider(this).get(AuthViewModel.class);
+                new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
 
 
         View root = inflater.inflate(R.layout.fragment_settings, container, false);
@@ -42,12 +42,18 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        EditText image = view.findViewById(R.id.imageEditText);
         EditText username = view.findViewById(R.id.usernameSetEditText);
+        EditText bio = view.findViewById(R.id.bioEditText);
+        EditText email = view.findViewById(R.id.emailSetEditText);
+
         authViewModel.user.observe(getViewLifecycleOwner(), new Observer<User>() {
             @Override
             public void onChanged(User user) {
+                image.setText(user.getImage());
                 username.setText(user.getUsername());
-                Log.d("username","username");
+                bio.setText(user.getBio());
+                email.setText(user.getEmail());
             }
         });
     }

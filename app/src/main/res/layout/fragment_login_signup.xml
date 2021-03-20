@@ -6,7 +6,6 @@
     android:gravity="center_horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".ui.auth.LoginFragment"
     >
     <EditText
         android:inputType="text"
@@ -35,7 +34,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
-        android:text="Login"
+        android:text="Submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>

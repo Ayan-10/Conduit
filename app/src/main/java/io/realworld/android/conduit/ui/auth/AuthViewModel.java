@@ -19,7 +19,7 @@ public class AuthViewModel extends ViewModel {
 
     private final MutableLiveData<User> _user = new MutableLiveData<>();
 
-    public MutableLiveData<User> user = _user;
+    public LiveData<User> user = _user;
 
     ConduitAuthClient conduitClient = new ConduitAuthClient();
 

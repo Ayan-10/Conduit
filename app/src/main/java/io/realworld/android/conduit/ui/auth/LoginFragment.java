@@ -1,5 +1,6 @@
 package io.realworld.android.conduit.ui.auth;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -27,14 +28,16 @@ import io.realworld.android.conduit.R;
 
 public class LoginFragment extends Fragment {
 
+
     private AuthViewModel authViewModel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         authViewModel =
-                new ViewModelProvider(this).get(AuthViewModel.class);
+                new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_login_signup, container, false);
+
         EditText pEditText = root.findViewById(R.id.usernameEditText);
         pEditText.setVisibility(View.GONE);
 
@@ -57,15 +60,6 @@ public class LoginFragment extends Fragment {
                 authViewModel.login(emailEditText,passwordEditText);
             }
         });
-        authViewModel.user.observe(getViewLifecycleOwner(), new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                String s = user.getUsername();
-                Toast.makeText(requireContext(),"User logged "+s,Toast.LENGTH_LONG).show();
-                intent.putExtra("username",s);
-                startActivity(intent);
-            }
-        });
+
     }
 }
