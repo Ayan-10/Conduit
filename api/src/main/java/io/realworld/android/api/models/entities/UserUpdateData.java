@@ -18,6 +18,14 @@ public class UserUpdateData {
     @SerializedName("username")
     private String username;
 
+    public UserUpdateData(String image, String bio, String email, String password, String username) {
+        this.image = image;
+        this.bio = bio;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+    }
+
     public void setImage(String image){
         this.image = image;
     }

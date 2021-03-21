@@ -46,6 +46,7 @@ public class SettingsFragment extends Fragment {
         EditText username = view.findViewById(R.id.usernameSetEditText);
         EditText bio = view.findViewById(R.id.bioEditText);
         EditText email = view.findViewById(R.id.emailSetEditText);
+        EditText password = view.findViewById(R.id.passwordSetEditText);
 
         authViewModel.user.observe(getViewLifecycleOwner(), new Observer<User>() {
             @Override
@@ -54,6 +55,31 @@ public class SettingsFragment extends Fragment {
                 username.setText(user.getUsername());
                 bio.setText(user.getBio());
                 email.setText(user.getEmail());
+            }
+        });
+
+        MaterialButton updateButton = view.findViewById(R.id.UpdateButtonSet);
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String imageText = image.getText().toString();
+                String bioText = bio.getText().toString();
+                String emailText = email.getText().toString();
+                String passwordText = password.getText().toString();
+                String usernameText = username.getText().toString();
+
+                if(passwordText.isEmpty()){
+                    passwordText = null;
+                }
+                if(emailText.isEmpty()){
+                    emailText = null;
+                }
+                if(usernameText.isEmpty()){
+                    usernameText = null;
+                }
+
+
+                authViewModel.updateUser(imageText,bioText,emailText,passwordText,usernameText);
             }
         });
     }

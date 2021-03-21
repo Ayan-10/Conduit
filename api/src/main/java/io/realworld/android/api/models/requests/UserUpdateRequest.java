@@ -10,7 +10,11 @@ public class UserUpdateRequest{
 	@SerializedName("user")
 	private UserUpdateData user;
 
-	public void setUser(UserUpdateData user){
+	public UserUpdateRequest(UserUpdateData userUpdateData) {
+		this.user=userUpdateData;
+	}
+
+    public void setUser(UserUpdateData user){
 		this.user = user;
 	}
 

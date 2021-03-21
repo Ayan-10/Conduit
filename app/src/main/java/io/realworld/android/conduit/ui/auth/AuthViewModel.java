@@ -70,4 +70,25 @@ public class AuthViewModel extends ViewModel {
             }
         });
     }
+     public void updateUser(String image, String bio, String email, String password, String username){
+
+        UserRepo userRepo = new UserRepo();
+        Call<UserResponse> userResponseCall = userRepo.updateUser(image,bio,email,password,username);
+        userResponseCall.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                UserResponse userResponse = response.body();
+                if (userResponse != null) {
+                    _user.postValue(userResponse.getUser());
+                    Log.d("Login"," number of article "+userResponse.getUser().getToken());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+
+            }
+        });
+    }
 }

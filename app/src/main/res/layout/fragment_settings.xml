@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <EditText
-        android:hint="Password"
+        android:hint="New Password"
         android:id="@+id/passwordSetEditText"
         android:inputType="textPassword"
         android:layout_width="match_parent"
