@@ -91,4 +91,7 @@ public class AuthViewModel extends ViewModel {
             }
         });
     }
+    public void logout(){
+        _user.postValue(null);
+    }
 }
