@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#373A3C"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/artTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/source_sans_pro_semibold"
+            android:paddingBottom="5dp"
+            tools:text="Testing to test"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/artavatarImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/artusernameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/source_sans_pro_semibold"
+                    android:paddingLeft="5dp"
+                    tools:text="aya12"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/artdateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/source_sans_pro_light"
+                    android:paddingLeft="5dp"
+                    tools:text="March 21, 2021"
+                    android:textColor="@color/conduit_grey"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <TextView
+                  android:id="@+id/bodyTextView"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:padding="10dp"
+                  tools:text="pojdw'ofrefhwivljdfbn iofpejfeknoer po peo jek jeroi jepo joem oef helkfbeoivheoi irif pi oei hfoei nkj hoie owu hjerh virvj orvh rjhvorj o hlk;r hjrvn rov rkjvhrjkv brovrkjv knv eeai neoiv eo;n ekvbeoinvoiej opi orkv nrijvn rihv nrvo jehvoiebfpoeouefpihefhp9erfioegoiwjfiruf;ejih eip hori vjoir vojr shvokrs hvoir voris vropsiv dspov psi opi joivjoi pio o'h oi joiejfoei oier ho ioi ep oe roie o ghe hopij hi roi vpr ork' hroiv jroiv jroi uiopr uopr j oij oih oirsp orokb oirvroivrsojdfkniope goprj;osr hvpies hpor gopioi rvojsrvjdf heo ofiue pioeg fip jf'oihfpofopirfp jbpojfoij fprj fonrojvj piefjwpejoj oie fjpoeroierjfpioj oie fpe pvj s;onvoshf ;o if;on vo;i oei o;ienv eo;ij opwij ro[ hio9rfiohg3vw wjboi joi opb f;oh oi hpwfosvjwp oiepooiionprnoer epkr eoj neo eov i;ejv neo;jv o veoj vij ihcedjicbdu hwedjiebuiefbeifheijfeuig8djpodkqPDJ OI OI D2I JOIH OIF HION EI HIJ j eoif jeoi hwo hi hw;o hwoihwiu hwiu o hwi eijfibiuaihijc aeiuc hiec iejv hiej eij eiv eojv beihob woicbe iucaei;uc hauhv ihcoiajciou ahwcoioi jw-od ieoifygfiodowek pvojbvic wi dj3 feifb oj; ojbvugcbie jcwpi o cjfdvoiveoi joib oeifei;hf qvp2 eo[ fj'oe feriofewiuheoi hi u3i dj-o3 fwo jecj oke j[0iwe f;je oihf 3foiwew[cjvawojf hihf hwodwln fihpiudpwidhfjoer ojfoiefouer hgeouihg iou houoh ou hgljkjjvohpgij oijpijf oisfjsrvjker h j ou fowie fjwe[d w;bjit gh9rh ehifveyq pwd;owqe fbjke ifwapcnaih hoe kekn rijf h89tjkdfbmdju8rfjiefgyrfhdjfb ofopeirfeo fbuoe fow f;ojwe kj bljn ;ihef ;ijefb eij gibusrfishjd gij"
+                  android:textColor="#373A3C"
+                  android:textSize="18sp" />
+    </ScrollView>
+
+
+</LinearLayout>

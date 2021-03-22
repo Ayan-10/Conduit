@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,19 +42,35 @@ public class GlobalFeedFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Initialize the adapter and attach it to the RecyclerView
-        articleFeedAdapter = new ArticleFeedAdapter();
+        articleFeedAdapter = new ArticleFeedAdapter(new ArticleFeedAdapter.OnArticleClickListener() {
+            @Override
+            public void OnItemClicked(String slug) {
+                openArticle(slug);
+            }
+        });
         recyclerView.setAdapter(articleFeedAdapter);
+
+
+        return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         viewModel.fetchGlobalFeed();
-        // TODO : make Myfragment
-        // TODO : trnasfer token to Myfragment from Signup and login fragment
-        // TODO : pass the token in fetchmyfeed
+
         viewModel.feed.observe(getViewLifecycleOwner(), new Observer<List<Article>>() {
             @Override
             public void onChanged(List<Article> articles) {
                 articleFeedAdapter.submitList(articles);
             }
         });
-
-        return root;
+    }
+    void openArticle(String articleId){
+        Bundle bundle = new Bundle();
+        bundle.putString(getResources().getString(R.string.arg_article_id),articleId);
+        Navigation.findNavController(getView()).navigate(
+                R.id.action_globalfeed_openarticle, bundle);
     }
 }

@@ -21,4 +21,5 @@ public class ArticlesRepo {
     public Call<ArticlesResponse> getMyFeed(){
         return authAPI.getFeedArticles();
     }
+
 }

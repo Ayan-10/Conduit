@@ -9,12 +9,28 @@
         android:id="@+id/nav_feed"
         android:name="io.realworld.android.conduit.ui.feed.GlobalFeedFragment"
         android:label="@string/menu_feed"
-        tools:layout="@layout/fragment_feed" />
+        tools:layout="@layout/fragment_feed" >
+        <action
+            android:id="@+id/action_globalfeed_openarticle"
+            app:destination="@id/nav_article"
+            app:popUpTo="@id/nav_feed">
+            <argument android:name="@string/arg_article_id"
+                app:argType="string"/>
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/nav_myfeed"
         android:name="io.realworld.android.conduit.ui.feed.MyFeedFragment"
         android:label="@string/menu_myfeed"
-        tools:layout="@layout/fragment_myfeed" />
+        tools:layout="@layout/fragment_myfeed" >
+        <action
+            android:id="@+id/action_myfeed_openarticle"
+            app:destination="@id/nav_article"
+            app:popUpTo="@id/nav_myfeed">
+            <argument android:name="@string/arg_article_id"
+                app:argType="string"/>
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/nav_auth"
         android:name="io.realworld.android.conduit.ui.auth.AuthFragment"
@@ -26,6 +42,10 @@
         android:name="io.realworld.android.conduit.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/nav_article"
+        android:name="io.realworld.android.conduit.ui.article.ArticleFragment"
+        tools:layout="@layout/fragment_article" />
 
     <fragment
         android:id="@+id/nav_home"

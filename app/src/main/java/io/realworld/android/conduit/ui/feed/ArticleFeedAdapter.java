@@ -1,9 +1,10 @@
 package io.realworld.android.conduit.ui.feed;
 
-import android.annotation.SuppressLint;
+import android.net.sip.SipSession;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,8 +18,10 @@ import io.realworld.android.conduit.R;
 
 public class ArticleFeedAdapter extends ListAdapter<Article,ArticleFeedAdapter.ArticleViewHolder>  {
 
-    protected ArticleFeedAdapter() {
+    private final OnArticleClickListener onArticleClickListener;
+    protected ArticleFeedAdapter(OnArticleClickListener onArticleClickListener) {
         super(DIFF_CALLBACK);
+        this.onArticleClickListener = onArticleClickListener;
     }
 
 
@@ -37,9 +40,17 @@ public class ArticleFeedAdapter extends ListAdapter<Article,ArticleFeedAdapter.A
 
         Article article = getItem(position) ;
 
-        holder.authorView.setText(article.getAuthor().getUsername());
-        holder.titleView.setText(article.getTitle());
-        holder.bodysnippetView.setText(article.getBody());
+        holder.authorTextView.setText(article.getAuthor().getUsername());
+        holder.titleTextView.setText(article.getTitle());
+        holder.bodysnippetTextView.setText(article.getBody());
+        holder.dateTextView.setText("March 21, 2021");
+        holder.avatarImageView.setImageResource(R.drawable.ic_launcher_background);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onArticleClickListener.OnItemClicked(article.getSlug());
+            }
+        });
     }
     private static final DiffUtil.ItemCallback<Article> DIFF_CALLBACK = new ArticleDiffCallback();
     public static class ArticleDiffCallback extends DiffUtil.ItemCallback<Article>{
@@ -67,20 +78,28 @@ public class ArticleFeedAdapter extends ListAdapter<Article,ArticleFeedAdapter.A
 }
 
     public class ArticleViewHolder extends RecyclerView.ViewHolder {
-        TextView authorView;
-        TextView titleView;
-        TextView bodysnippetView;
+        TextView authorTextView;
+        TextView titleTextView;
+        TextView bodysnippetTextView;
+        TextView dateTextView;
+        ImageView avatarImageView;
 
 
         public ArticleViewHolder(@NonNull View itemView) {
             super(itemView);
 
 
-            authorView = (TextView) itemView.findViewById(R.id.authortextview);
-            titleView = (TextView) itemView.findViewById(R.id.titletextview);
-            bodysnippetView = (TextView) itemView.findViewById(R.id.bodysnippettextview);
+            authorTextView = (TextView) itemView.findViewById(R.id.authortextview);
+            titleTextView = (TextView) itemView.findViewById(R.id.titletextview);
+            bodysnippetTextView = (TextView) itemView.findViewById(R.id.bodysnippettextview);
+            dateTextView = (TextView) itemView.findViewById(R.id.datetextview);
+            avatarImageView = (ImageView) itemView.findViewById(R.id.avatarimageview);
 
 
         }
+
+    }
+    public interface OnArticleClickListener{
+          void OnItemClicked(String slug);
     }
 }
