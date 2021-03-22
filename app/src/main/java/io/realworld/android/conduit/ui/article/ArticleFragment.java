@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +16,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.realworld.android.api.models.entities.Article;
 import io.realworld.android.conduit.R;
@@ -45,6 +52,7 @@ public class ArticleFragment extends Fragment {
         TextView usernameView = (TextView) view.findViewById(R.id.artusernameTextView);
         TextView dateView = (TextView) view.findViewById(R.id.artdateTextView);
         TextView bodyView = (TextView) view.findViewById(R.id.bodyTextView);
+        ImageView avatarView = (ImageView) view.findViewById(R.id.artavatarImageView);
 
         viewModel.article.observe(getViewLifecycleOwner(), new Observer<Article>() {
             @Override
@@ -52,9 +60,19 @@ public class ArticleFragment extends Fragment {
                 titleView.setText(article.getTitle());
                 usernameView.setText(article.getAuthor().getUsername());
                 bodyView.setText(article.getBody());
-                dateView.setText(article.getCreatedAt()); //TODO: format date
                 titleView.setText(article.getTitle());
-
+                //date
+                SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault());
+                SimpleDateFormat appDateFormat = new SimpleDateFormat("MMMM dd, yyyy",Locale.getDefault());
+                Date date = null;
+                try {
+                    date = isoDateFormat.parse(article.getCreatedAt());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                String formattedDate = appDateFormat.format(date);
+                dateView.setText(formattedDate);
+                Glide.with(avatarView).load(article.getAuthor().getImage()).circleCrop().into(avatarView);
             }
         });
     }

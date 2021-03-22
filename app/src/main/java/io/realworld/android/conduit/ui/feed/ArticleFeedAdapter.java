@@ -12,6 +12,13 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import io.realworld.android.api.models.entities.Article;
 import io.realworld.android.api.models.entities.Profile;
 import io.realworld.android.conduit.R;
@@ -43,8 +50,19 @@ public class ArticleFeedAdapter extends ListAdapter<Article,ArticleFeedAdapter.A
         holder.authorTextView.setText(article.getAuthor().getUsername());
         holder.titleTextView.setText(article.getTitle());
         holder.bodysnippetTextView.setText(article.getBody());
-        holder.dateTextView.setText("March 21, 2021");
-        holder.avatarImageView.setImageResource(R.drawable.ic_launcher_background);
+        //date
+        SimpleDateFormat isoDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",Locale.getDefault());
+        SimpleDateFormat appDateFormat = new SimpleDateFormat("MMMM dd, yyyy",Locale.getDefault());
+        Date date = null;
+        try {
+            date = isoDateFormat.parse(article.getCreatedAt());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = appDateFormat.format(date);
+        holder.dateTextView.setText(formattedDate);
+        // Image
+        Glide.with(holder.avatarImageView).load(article.getAuthor().getImage()).circleCrop().into(holder.avatarImageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
