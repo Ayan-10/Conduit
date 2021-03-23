@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -59,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
         String token = sharedPreferences.getString(PREFS_KEY_TOKEN, null);
         String username =  sharedPreferences.getString(PREFS_KEY_USERNAME, null);
 
+        if(username != null){
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.postFragment);                }
+            });
+        }
         authViewModel.user.observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
@@ -66,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 String username = null;
                 if(user!=null){
                     username=user.getUsername();
+                    fab.setVisibility(View.VISIBLE);
                 }
                 Toast.makeText(MainActivity.this,"User logged "+username,Toast.LENGTH_LONG).show();
 

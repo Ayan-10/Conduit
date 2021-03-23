@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:id="@+id/postFragment">
+    <EditText
+        android:hint="Article Title"
+        android:id="@+id/imageEditText"
+        android:inputType="textUri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:hint="What's this article about"
+        android:inputType="text"
+        android:id="@+id/usernameSetEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:hint="Write your article (In markdown)"
+        android:id="@+id/bioEditText"
+        android:lines="25"
+        android:gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
