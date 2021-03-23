@@ -7,8 +7,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -83,13 +86,20 @@ public class MainActivity extends AppCompatActivity {
             public void onChanged(User user) {
 
                 String username = null;
+                String userImage = null;
                 if(user!=null){
                     username=user.getUsername();
+                    userImage = user.getImage();
+                    if(userImage==null || userImage.isEmpty()){
+                        userImage = "https://static.productionready.io/images/smiley-cyrus.jpg";
+                    }
+
                     fab.setVisibility(View.VISIBLE);
                 }
+                Log.d("UserImage","This here "+userImage);
                 Toast.makeText(MainActivity.this,"User logged "+username,Toast.LENGTH_LONG).show();
 
-                updateMenu(username,navigationView);
+                updateMenu(userImage,username,navigationView);
 
                 if(user == null){
                     sharedPreferences.edit().remove(PREFS_KEY_TOKEN).apply();
@@ -103,12 +113,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    private void updateMenu(String userImage, String username, NavigationView navigationView){
+        View view = navigationView.getHeaderView(0);
 
-    private void updateMenu(String s, NavigationView navigationView){
-        if(s!=null){
+        TextView userTextView = (TextView) view.findViewById(R.id.textHeaderView);
+        ImageView avatarView = (ImageView) view.findViewById(R.id.imageHeaderView);
+        if(username!=null){
+
+            Log.d("Image", "This is "+userImage);
+            Log.d("Userrrrrr","iuggtyuiuyfdghyju");
+
+            userTextView.setText(username);
+            Glide.with(avatarView.getContext()).load(userImage).circleCrop().into(avatarView);
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.menu_main_user);
         }else{
+            userTextView.setText("Guest");
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.menu_main_guest);
         }

@@ -1,6 +1,7 @@
 package io.realworld.android.conduit.ui.article;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,7 @@ public class ArticleFragment extends Fragment {
                 }
                 String formattedDate = appDateFormat.format(date);
                 dateView.setText(formattedDate);
+                Log.d("Image is","This"+article.getAuthor().getImage());
                 Glide.with(avatarView).load(article.getAuthor().getImage()).circleCrop().into(avatarView);
             }
         });
