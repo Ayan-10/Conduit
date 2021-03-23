@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             navigationView.inflateMenu(R.menu.menu_main_user);
         }else{
             userTextView.setText("Guest");
+            Glide.with(avatarView.getContext()).load("https://static.productionready.io/images/smiley-cyrus.jpg").circleCrop().into(avatarView);
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.menu_main_guest);
         }
