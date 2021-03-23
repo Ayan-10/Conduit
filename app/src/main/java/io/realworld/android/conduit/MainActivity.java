@@ -25,6 +25,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import io.realworld.android.api.ConduitAuthClient;
 import io.realworld.android.api.models.entities.User;
 import io.realworld.android.conduit.ui.auth.AuthViewModel;
 
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private AuthViewModel authViewModel;
     private SharedPreferences sharedPreferences;
+    ConduitAuthClient conduitClient = new ConduitAuthClient();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
         String token = sharedPreferences.getString(PREFS_KEY_TOKEN, null);
         String username =  sharedPreferences.getString(PREFS_KEY_USERNAME, null);
 
+        if(token != null){
+            conduitClient.setAuthToken(token);
+            authViewModel.getCurrentUser(token);
+        }
         if(username != null){
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -94,4 +94,26 @@ public class AuthViewModel extends ViewModel {
     public void logout(){
         _user.postValue(null);
     }
+
+    public void getCurrentUser(String token) {
+        UserRepo userRepo = new UserRepo();
+        Call<UserResponse> userResponseCall = userRepo.getUser();
+        userResponseCall.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                UserResponse userResponse = response.body();
+                if (userResponse != null) {
+                    _user.postValue(userResponse.getUser());
+                    conduitClient.setAuthToken( "Token "+userResponse.getUser().getToken().trim());
+                    Log.d("Login"," number of article "+userResponse.getUser().getToken());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+
+            }
+        });
+    }
 }

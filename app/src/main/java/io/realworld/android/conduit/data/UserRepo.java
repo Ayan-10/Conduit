@@ -30,4 +30,8 @@ public class UserRepo {
     public Call<UserResponse> updateUser(String image, String bio, String email, String password, String username) {
         return authApi.updateCurrentUser(new UserUpdateRequest(new UserUpdateData(image,bio,email,password,username)));
     }
+
+    public Call<UserResponse> getUser() {
+        return authApi.getCurrentUser();
+    }
 }
