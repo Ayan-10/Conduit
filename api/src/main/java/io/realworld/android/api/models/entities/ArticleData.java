@@ -18,6 +18,12 @@ public class ArticleData {
     @SerializedName("title")
     private String title;
 
+    public ArticleData(String titleText, String desText, String bodyText) {
+        this.title = titleText;
+        this.description = desText;
+        this.body = bodyText;
+    }
+
     public String getBody() {
         return body;
     }

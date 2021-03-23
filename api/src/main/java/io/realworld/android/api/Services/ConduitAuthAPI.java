@@ -1,7 +1,6 @@
 package io.realworld.android.api.Services;
 
-import org.jetbrains.annotations.Nullable;
-
+import io.realworld.android.api.models.requests.CreateArticleRequest;
 import io.realworld.android.api.models.requests.UserUpdateRequest;
 import io.realworld.android.api.models.responses.ArticleResponse;
 import io.realworld.android.api.models.responses.ArticlesResponse;
@@ -11,16 +10,19 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface ConduitAuthAPI {
 
     @GET("user")
     Call<UserResponse> getCurrentUser();
+
+    @POST("articles")
+    Call<ArticleResponse> postArticle(
+            @Body CreateArticleRequest createArticleRequest
+    );
 
     @PUT("user")
     Call<UserResponse> updateCurrentUser(

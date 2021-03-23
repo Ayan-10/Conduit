@@ -1,6 +1,7 @@
 package io.realworld.android.conduit.ui.feed;
 
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -31,6 +32,7 @@ public class FeedViewModel extends ViewModel {
         arti.enqueue(new Callback<ArticlesResponse>() {
             @Override
             public void onResponse(@NotNull Call<ArticlesResponse> call, @NotNull Response<ArticlesResponse> response) {
+
                 ArticlesResponse articlesResponse = response.body();
                 if (articlesResponse != null) {
                     _feed.postValue(articlesResponse.getArticless());

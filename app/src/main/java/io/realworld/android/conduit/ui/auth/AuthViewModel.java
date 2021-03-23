@@ -58,7 +58,7 @@ public class AuthViewModel extends ViewModel {
                 UserResponse userResponse = response.body();
                 if (userResponse != null) {
                     _user.postValue(userResponse.getUser());
-                    conduitClient.setAuthToken( userResponse.getUser().getToken().trim());
+                    conduitClient.setAuthToken("Token "+ userResponse.getUser().getToken().trim());
                     Log.d("Login"," number of article "+userResponse.getUser().getToken());
 
                 }

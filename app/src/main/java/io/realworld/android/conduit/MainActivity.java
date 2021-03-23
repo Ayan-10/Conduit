@@ -53,14 +53,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-               R.id.nav_feed,R.id.nav_home, R.id.nav_gallery, R.id.nav_settings)
+               R.id.nav_feed,R.id.nav_home, R.id.nav_gallery, R.id.nav_settings, R.id.nav_post_write)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -74,32 +73,27 @@ public class MainActivity extends AppCompatActivity {
             conduitClient.setAuthToken(token);
             authViewModel.getCurrentUser(token);
         }
-        if(username != null){
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.postFragment);                }
-            });
-        }
+
         authViewModel.user.observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
 
                 String username = null;
+                String userBio = null;
                 String userImage = null;
                 if(user!=null){
                     username=user.getUsername();
+                    userBio=user.getBio();
                     userImage = user.getImage();
                     if(userImage==null || userImage.isEmpty()){
                         userImage = "https://static.productionready.io/images/smiley-cyrus.jpg";
                     }
 
-                    fab.setVisibility(View.VISIBLE);
                 }
                 Log.d("UserImage","This here "+userImage);
                 Toast.makeText(MainActivity.this,"User logged "+username,Toast.LENGTH_LONG).show();
 
-                updateMenu(userImage,username,navigationView);
+                updateMenu(userImage,username,userBio,navigationView);
 
                 if(user == null){
                     sharedPreferences.edit().remove(PREFS_KEY_TOKEN).apply();
@@ -113,22 +107,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void updateMenu(String userImage, String username, NavigationView navigationView){
+    private void updateMenu(String userImage, String username, String userBio , NavigationView navigationView){
         View view = navigationView.getHeaderView(0);
 
         TextView userTextView = (TextView) view.findViewById(R.id.textHeaderView);
         ImageView avatarView = (ImageView) view.findViewById(R.id.imageHeaderView);
+        TextView bioTextView = (TextView) view.findViewById(R.id.bioHeaderView);
         if(username!=null){
 
             Log.d("Image", "This is "+userImage);
             Log.d("Userrrrrr","iuggtyuiuyfdghyju");
 
             userTextView.setText(username);
+            bioTextView.setText(userBio);
             Glide.with(avatarView.getContext()).load(userImage).circleCrop().into(avatarView);
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.menu_main_user);
         }else{
             userTextView.setText("Guest");
+            bioTextView.setText("");
             Glide.with(avatarView.getContext()).load("https://static.productionready.io/images/smiley-cyrus.jpg").circleCrop().into(avatarView);
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.menu_main_guest);
