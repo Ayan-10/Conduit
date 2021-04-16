@@ -28,7 +28,18 @@ and general mobile layout of Medium.com.
     <td><img src="https://user-images.githubusercontent.com/71203077/114977481-58b54800-9ea5-11eb-8ea4-85c6e407b9dd.png"width="300"></td>
   </tr>
  </table>
-
+<table>
+  <tr>
+     <td> Global Feed</td>
+     <td> Your Feed</td>
+     <td> Settings</td>
+  </tr>
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/71203077/114977790-e98c2380-9ea5-11eb-8c92-0690d41e22c4.png"width="300"></td>
+    <td><img src="https://user-images.githubusercontent.com/71203077/114977929-20fad000-9ea6-11eb-82ec-9b48874c09ee.png"width="300"></td>
+    <td><img src="https://user-images.githubusercontent.com/71203077/114977985-3839bd80-9ea6-11eb-986a-ea557c885321.png"width="300"></td>
+  </tr>
+ </table>
 
 ### Development
 This project has been developed with [Android Studio](https://developer.android.com/studio/)
