@@ -25,7 +25,6 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.Objects;
 
 import io.realworld.android.conduit.R;
-import io.realworld.android.conduit.ui.gallery.GalleryViewModel;
 
 public class AuthFragment extends Fragment {
 

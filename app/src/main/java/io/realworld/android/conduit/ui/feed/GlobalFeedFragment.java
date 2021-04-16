@@ -19,7 +19,6 @@ import java.util.List;
 
 import io.realworld.android.api.models.entities.Article;
 import io.realworld.android.conduit.R;
-import io.realworld.android.conduit.ui.gallery.GalleryViewModel;
 
 public class GlobalFeedFragment extends Fragment {
 
