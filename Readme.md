@@ -1,6 +1,6 @@
 ![](https://cloud.githubusercontent.com/assets/556934/25672246/9a20e960-2fe7-11e7-99d3-23652878a2c2.png)
 
-> ### Android/Kotlin codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+> ### Android/Java codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
 This codebase was created to demonstrate a fully fledged fullstack application built
 with **Java** including CRUD operations, authentication, routing, pagination, and more.
@@ -40,6 +40,16 @@ and general mobile layout of Medium.com.
     <td><img src="https://user-images.githubusercontent.com/71203077/114977985-3839bd80-9ea6-11eb-986a-ea557c885321.png"width="300"></td>
   </tr>
  </table>
+ <table>
+   <tr>
+      <td> Profile</td>
+      <td> Write Article</td>
+   </tr>
+   <tr>
+     <td><img src="https://user-images.githubusercontent.com/71203077/114978287-a9797080-9ea6-11eb-9c4b-ff48d2ac3354.png"width="300"></td>
+     <td><img src="https://user-images.githubusercontent.com/71203077/114978427-cf9f1080-9ea6-11eb-8618-e86cbfd780b8.png"width="300"></td>
+   </tr>
+  </table>
 
 ### Development
 This project has been developed with [Android Studio](https://developer.android.com/studio/)
