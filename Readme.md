@@ -59,7 +59,7 @@ This RealWorld app tries to show the following Android concepts:
 * Java Codebase
 * MVVM (Model View ViewModel) Architecture
 * LiveData
-* Kotlin Coroutines
+* Java threads
 * Jetpack Navigation Architecture
 
 ### Other Backends
